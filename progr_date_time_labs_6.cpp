@@ -31,6 +31,59 @@ DateTime DateTime::operator+ (const DateTime &date) { // перегрузка о
 	temp.hours = hours + date.hours;
 	temp.minutes = minutes + date.minutes;
 	temp.seconds = seconds +date.seconds;
+	if (temp.seconds > 59) {
+		temp.seconds = temp.seconds - 60;
+		temp.minutes++;
+		if (temp.minutes > 59) {
+			temp.minutes = temp.minutes - 60;
+			temp.hours++;
+		}
+		if (temp.hours > 23) {
+			temp.hours = temp.hours - 24;
+			temp.day++;
+		}
+		if (temp.day > 31) {
+			temp.day = temp.day - 31;
+			temp.month++;
+		}
+		if (temp.month > 12) {
+			temp.month = temp.month - 12;
+			temp.year++;
+		}
+	} else if (temp.minutes > 59) {
+		temp.hours++;
+		temp.minutes = temp.minutes - 60;
+		if (temp.hours > 23) {
+			temp.hours = temp.hours - 24;
+			temp.day++;
+		}
+		if (temp.CheckingDate() == 1) {
+			temp.day = temp.day - 31;
+			temp.month++;
+			while (temp.day < 1) {
+				temp.day++;
+			}
+		}
+		if (temp.CheckingDate() == 1) {
+			temp.month = temp.month - 12;
+			temp.year++;
+		}
+	} else if (temp.hours > 23) {
+		temp.day++;
+		temp.hours = temp.hours - 23;
+		while (temp.CheckingDate() == 1) {
+			if (temp.day > 31) {
+				temp.month++;
+				temp.day = temp.day - 31;
+			}
+		}
+	} else if ((temp.day > 28 && temp.CheckingDate() == 1) || (temp.day > 29 && temp.CheckingDate() == 1) || (temp.day > 30 && temp.CheckingDate() == 1) || temp.day > 31) {
+		temp.day = 1;
+		temp.month++;
+	} else if (temp.month > 12) {
+		temp.month = temp.month - 12;
+		temp.year++;
+	}
 	return temp;
 }
 
@@ -42,22 +95,120 @@ DateTime DateTime::operator- (const DateTime &date) { // перегрузка в
 	temp.hours = hours - date.hours;
 	temp.minutes = minutes - date.minutes;
 	temp.seconds = seconds - date.seconds;
+	if (temp.seconds < 0) {
+		temp.seconds = 60 - abs(temp.seconds);
+		temp.minutes--;
+		if (temp.minutes < 0) {
+			temp.minutes = 60 - abs(temp.minutes);
+			temp.hours--;
+		}
+		if (temp.hours < 0) {
+			temp.hours = 24 - abs(temp.hours);
+			temp.day--;
+		}
+		if (temp.day < 1) {
+			temp.day = 31 - abs(temp.day);
+			temp.month--;
+			if (temp.CheckingDate() == 1) {
+				temp.day--;
+			}
+		}
+		if (temp.month < 1) {
+			temp.month = 12 - abs(temp.month);
+			temp.year--;
+		}
+	} else if (temp.minutes < 0) {
+		temp.hours--;
+		temp.minutes = 60 - abs(temp.minutes);
+		if (temp.hours < 0) {
+			temp.hours = 24 - abs(temp.hours);
+			temp.day--;
+		}
+		if (temp.CheckingDate() == 1) {
+			temp.day = 31 - abs(temp.day);
+			temp.month--;
+			if (temp.CheckingDate() == 1) {
+				temp.day--;
+			}
+		}
+		if (CheckingDate() == 1) {
+			temp.month = 12 - abs(temp.month);
+			temp.year--;
+		}
+	} else if (temp.hours < 0) {
+		temp.day--;
+		temp.hours = 24 - abs(temp.hours);
+		if (temp.CheckingDate() == 1) {
+			if (temp.day < 1) {
+				temp.day = 31 - abs(temp.day);
+				temp.month--;
+			}
+			if (temp.CheckingDate() == 1) {
+				temp.day--;
+			}
+		}
+	} else if (temp.day < 1) {
+		temp.day = 31 - abs(temp.day);
+		temp.month--;
+		if (temp.CheckingDate() == 1) {
+			temp.day--;
+		}
+	} else if (temp.month < 1) {
+		temp.month = 12 - abs(temp.month);
+		temp.year--;
+	}
 	return temp;
 }
+
 DateTime::operator char*() { // оператор присваивания char*
 	this->GetDateTime();
 	return this->ToString();
 }
 
-DateTime operator+ (const DateTime date, int year) { // дружественный оператор сложения числа года
+DateTime operator+ (const DateTime date, int hours) { // дружественный оператор сложения числа часа
 	DateTime temp = date;
-	temp.year = date.year + year;
+	temp.hours = date.hours + hours;
+	if (temp.hours > 23) {
+		temp.hours = temp.hours - 24;
+		temp.day++;
+	} else if ((temp.day > 28 && temp.CheckingDate() == 1) || (temp.day > 29 && temp.CheckingDate() == 1) || (temp.day > 30 && temp.CheckingDate() == 1) || temp.day > 31) {
+		temp.day = temp.day - 31;
+		temp.month++;
+		while (temp.day < 1) {
+			temp.day++;
+		}
+	} else if (temp.month > 12) {
+		temp.month = temp.month - 12;
+		temp.year++;
+	}
 	return temp;
 }
 
-DateTime operator- (const DateTime date, int year) { // дружественный оператор вычитания числа года
+DateTime operator- (const DateTime date, int hours) { // дружественный оператор вычитания числа часа
 	DateTime temp = date;
-	temp.year = date.year - year;
+	temp.hours = date.hours - hours;
+	if (temp.hours < 0) {
+		temp.day--;
+		temp.hours = 24 - abs(temp.hours);
+		if (temp.CheckingDate() == 1) {
+			if (temp.day < 1) {
+				temp.day = 31 - abs(temp.day);
+				temp.month--;
+			}
+			if (temp.CheckingDate() == 1) {
+				temp.day--;
+			}
+		}
+	} else if (temp.day < 1) {
+		temp.day = 31 - abs(temp.day);
+		temp.month--;
+		if (temp.CheckingDate() == 1) {
+			temp.day--;
+		}
+	} else if (temp.month < 1) {
+		temp.month = 12 - abs(temp.month);
+		temp.year--;
+	}
 	return temp;
 }
 
@@ -75,7 +226,7 @@ void DateTime::CheckingDay(int day) {
 		this->day = day;
 	}
 	catch (MyException &ex) {
-		cerr << ex.GetError() << "\n";
+		cerr << ex.what() << "\n";
 	}
 }
 
@@ -89,7 +240,7 @@ void DateTime::CheckingMonth(int month) {
 		this->month = month;
 	}
 	catch (MyException &ex) {
-		cerr << ex.GetError() << "\n";
+		cerr << ex.what() << "\n";
 	}
 }
 
@@ -103,7 +254,7 @@ void DateTime::CheckingYear(int year) {
 		this->year = year;
 	}
 	catch (MyException &ex) {
-		cerr << ex.GetError() << "\n";
+		cerr << ex.what() << "\n";
 	}
 }
 
@@ -117,7 +268,7 @@ void DateTime::CheckingHours(int hours) {
 		this->hours = hours;
 	}
 	catch (MyException &ex) {
-		cerr << ex.GetError() << "\n";
+		cerr << ex.what() << "\n";
 	}
 }
 
@@ -131,7 +282,7 @@ void DateTime::CheckingMinutes(int minutes) {
 		this->minutes = minutes;
 	}
 	catch (MyException &ex) {
-		cerr << ex.GetError() << "\n";
+		cerr << ex.what() << "\n";
 	}
 }
 
@@ -145,7 +296,7 @@ void DateTime::CheckingSeconds(int seconds) {
 		this->seconds = seconds;
 	}
 	catch (MyException &ex) {
-		cerr << ex.GetError() << "\n";
+		cerr << ex.what() << "\n";
 	}
 }
 

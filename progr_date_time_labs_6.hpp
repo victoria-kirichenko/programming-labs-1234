@@ -6,10 +6,10 @@
 #include <cstring>
 using namespace std;
 
-class MyException {
-	public:
+class MyException : public exception{
+	public :
 		MyException(const char *msg) : message(msg) {};
-		const char *GetError() {
+		const char *what() {
 			return message;
 		}
 	private:
@@ -33,8 +33,8 @@ public:
 	DateTime operator+ (const DateTime &date);
 	DateTime operator- (const DateTime &date);
 	operator char*();
-	friend DateTime operator+ (const DateTime date, int year);
-	friend DateTime operator- (const DateTime date, int year);
+	friend DateTime operator+ (const DateTime date, int hours);
+	friend DateTime operator- (const DateTime date, int hours);
 
 
 	void CheckingDay(int day);

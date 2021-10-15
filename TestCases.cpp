@@ -153,7 +153,7 @@ TEST_CASE("operator adding dates") {
     DateTime date2(3, 3, 2021, 14, 12, 35);
     DateTime p = date1 + date2;
     char* mas = { p.GetDateTime() };
-    char mas1[20] = "06.06.4042 27:26:50";
+    char mas1[20] = "07.06.4042 04:26:50";
     REQUIRE(!memcmp(mas, mas1, 19));
 }
 
@@ -173,16 +173,34 @@ TEST_CASE("operator char*") {
     REQUIRE(!memcmp(r, mas1, 19));
 }
 
-TEST_CASE("operator adding number in year") {
-    DateTime date1(3, 3, 2021, 13, 14, 15);
+TEST_CASE("operator adding number in hours") {
+    DateTime date1(3, 3, 2021, 23, 14, 15);
     date1 = date1 + 4;
-    char mas1[20] = "03.03.2025 13:14:15";
+    char mas1[20] = "04.03.2021 03:14:15";
     REQUIRE(!memcmp(date1, mas1, 19));
 }
 
-TEST_CASE("operator subtragting number in year") {
-    DateTime date1(3, 3, 2021, 13, 14, 15);
+TEST_CASE("operator subtragting number in hours") {
+    DateTime date1(3, 3, 2021, 1, 14, 15);
     date1 = date1 - 4;
-    char mas1[20] = "03.03.2017 13:14:15";
+    char mas1[20] = "02.03.2021 21:14:15";
     REQUIRE(!memcmp(date1, mas1, 19));
+}
+
+TEST_CASE("adding wierd dates") {
+    DateTime date1(30, 11, 2021, 23, 59, 59);
+    DateTime date2(1, 1, 1, 0, 0, 1);
+    DateTime p = date1 + date2;
+    char* mas = { p.GetDateTime() };
+    char mas1[20] = "01.01.2023 00:00:00";
+    REQUIRE(!memcmp(mas, mas1, 19));
+}
+
+TEST_CASE("subtragting weird dates") {
+    DateTime date1(1, 1, 2021, 0, 0, 0);
+    DateTime date2(1, 1, 1, 1, 1, 1);
+    DateTime p = date1 - date2;
+    char* mas = { p.GetDateTime() };
+    char mas1[20] = "29.11.2019 22:58:59";
+    REQUIRE(!memcmp(mas, mas1, 19));
 }
