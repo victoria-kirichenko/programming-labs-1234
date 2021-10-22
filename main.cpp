@@ -1,7 +1,7 @@
-#include "progr_date_time_labs_6.cpp"
+#include "labs123.cpp"
 
 int main() {
-    DateTime d(34, 13, 2022, 78, 70, 60);
+ /*   DateTime d(34, 13, 2022, 78, 70, 60);
     d.CheckingDay(d.GetDay());
     d.CheckingMonth(d.GetMonth());
     d.CheckingHours(d.GetHours());
@@ -15,5 +15,27 @@ int main() {
     d2.CheckingHours(d2.GetHours());
     d2.CheckingMinutes(d2.GetMinutes());
     d2.CheckingSeconds(d2.GetSeconds());
-    d2.CheckingYear(d2.GetYear());
+    d2.CheckingYear(d2.GetYear()); */
+
+    DateTime d(1,12,2022,12,12,12);
+    ofstream out("text.txt");
+    ifstream in("text.txt");
+    out << d;
+    char mas[20];
+    char* mas1;
+    bool check = true;
+    out.close();
+    while (!in.eof()) {
+        in.getline(mas, 20);
+    }
+    mas1 = d.GetDateTime();
+    check = !memcmp(mas, mas1, 19);
+   // cout << check;
+    in.close();
+
+    ifstream is("text1.txt");
+    is >> d;
+    cout << d.GetDateTime();
+
+
 }

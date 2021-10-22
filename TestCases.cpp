@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN
 
-#include "progr_date_time_labs_6.cpp"
+#include "labs123.cpp"
 #include "catch.hpp"  
 
 TEST_CASE("combo and weird date (+Seconds/+Day)") {
