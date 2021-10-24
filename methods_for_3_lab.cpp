@@ -95,8 +95,13 @@ ifstream& readBinary (ifstream &is , DateTime& date) {
         if (!is.is_open()) {
             throw MyException("File cannot open");
         } else {
-            is.read((char*)&date, sizeof(DateTime));
-            date.GetDateTime();
+            is.read((char*)&date.day, sizeof(int));
+            is.read((char*)&date.month, sizeof(int));
+            is.read((char*)&date.year, sizeof(int));
+            is.read((char*)&date.hours, sizeof(int));
+            is.read((char*)&date.minutes, sizeof(int));
+            is.read((char*)&date.seconds, sizeof(int));
+            
             is.close();
         }
     }

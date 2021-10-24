@@ -205,7 +205,7 @@ TEST_CASE("subtragting weird dates") {
     REQUIRE(!memcmp(mas, mas1, 19));
 }
 
-TEST_CASE("checking operator << and >>") {
+TEST_CASE("checking operators << and >>") {
     DateTime d(1,12,2022,12,12,12);
     ofstream out("text.txt");
     ifstream in("text.txt");
@@ -221,7 +221,7 @@ TEST_CASE("checking operator << and >>") {
     REQUIRE(!memcmp(mas, mas1, 19));
 }
 
-TEST_CASE("checking operator writeBinary and readBinary") {
+TEST_CASE("checking operators writeBinary and readBinary") {
     DateTime d(1,12,2022,12,12,12);
     DateTime d1;
     ofstream to_binary("binary.dat");
