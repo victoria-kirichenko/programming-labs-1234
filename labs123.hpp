@@ -49,6 +49,8 @@ public:
 
 	friend ofstream& operator<< (ofstream& os, DateTime& date);
     friend ifstream& operator>> (ifstream& is, DateTime& date);
+	friend ofstream& writeBinary (ofstream &os , DateTime& date);
+	friend ifstream& readBinary (ifstream &is , DateTime& date);
 
 	bool CheckingDate();
 	int GetDay();

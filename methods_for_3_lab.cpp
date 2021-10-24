@@ -74,3 +74,40 @@ ifstream& operator>> (ifstream& is, DateTime& date) { // из файла
     }
    return is;
 }
+
+ofstream& writeBinary (ofstream &os , DateTime& date) {
+    try {
+        if (!os.is_open()) {
+            throw MyException("File cannot open");
+        } else {
+            os.write((char*)&date.day, sizeof(int));
+            os.write((char*)&date.month, sizeof(int));
+            os.write((char*)&date.year, sizeof(int));
+            os.write((char*)&date.hours, sizeof(int));
+            os.write((char*)&date.minutes, sizeof(int));
+            os.write((char*)&date.seconds, sizeof(int));
+
+            os.close();
+        }
+    }
+    catch (MyException &ex) {
+		cerr << ex.what() << "\n";
+    }
+   return os;
+}
+
+ifstream& readBinary (ifstream &is , DateTime& date) {
+    try {
+        if (!is.is_open()) {
+            throw MyException("File cannot open");
+        } else {
+            is.read((char*)&date, sizeof(DateTime));
+            date.GetDateTime();
+            is.close();
+        }
+    }
+    catch (MyException &ex) {
+		cerr << ex.what() << "\n";
+    }
+   return is;
+}

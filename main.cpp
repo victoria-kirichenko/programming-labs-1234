@@ -18,6 +18,7 @@ int main() {
     d2.CheckingYear(d2.GetYear()); */
 
     DateTime d(1,12,2022,12,12,12);
+    DateTime d2;
     ofstream out("text.txt");
     ifstream in("text.txt");
     out << d;
@@ -33,9 +34,14 @@ int main() {
    // cout << check;
     in.close();
 
-    ifstream is("text1.txt");
-    is >> d;
-    cout << d.GetDateTime();
-
-
+  //  ifstream is("text1.txt");
+  //  is >> d;
+  //  cout << d.GetDateTime();
+  //ofstream binary("binary.dat");
+ // writeBinary(binary, d);
+ // binary.close();
+ifstream frombinary("binary.dat");
+readBinary(frombinary, d2);
+cout << d2.GetDateTime();
+frombinary.close();
 }
