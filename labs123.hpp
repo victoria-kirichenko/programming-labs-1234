@@ -52,6 +52,8 @@ public:
 	friend ofstream& writeBinary (ofstream &os , DateTime& date);
 	friend ifstream& readBinary (ifstream &is , DateTime& date);
 
+	friend istream& vvod (DateTime& date);
+
 	bool CheckingDate();
 	int GetDay();
 	void SetDay(int valueDay);

@@ -19,7 +19,7 @@ int main() {
 
     DateTime d(1,12,2022,12,12,12);
     DateTime d2;
-    ofstream out("text.txt");
+  /*  ofstream out("text.txt");
     ifstream in("text.txt");
     out << d;
     char mas[20];
@@ -31,17 +31,21 @@ int main() {
     }
     mas1 = d.GetDateTime();
     check = !memcmp(mas, mas1, 19);
-   // cout << check;
-    in.close();
+    cout << check;
+    in.close(); */
 
   //  ifstream is("text1.txt");
   //  is >> d;
   //  cout << d.GetDateTime();
+
   //ofstream binary("binary.dat");
- // writeBinary(binary, d);
+  //writeBinary(binary, d);
  // binary.close();
-ifstream frombinary("binary.dat");
-readBinary(frombinary, d2);
-cout << d2.GetDateTime();
-frombinary.close();
+
+  vvod(d);
+
+//ifstream frombinary("binary.dat");
+//readBinary(frombinary, d2);
+//cout << d2.GetDateTime();
+//frombinary.close();
 }

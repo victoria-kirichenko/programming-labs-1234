@@ -204,3 +204,30 @@ TEST_CASE("subtragting weird dates") {
     char mas1[20] = "29.11.2019 22:58:59";
     REQUIRE(!memcmp(mas, mas1, 19));
 }
+
+TEST_CASE("checking operator << and >>") {
+    DateTime d(1,12,2022,12,12,12);
+    ofstream out("text.txt");
+    ifstream in("text.txt");
+    out << d;
+    char mas[20];
+    char* mas1;
+    bool check = true;
+    out.close();
+    while (!in.eof()) {
+        in.getline(mas, 20);
+    }
+    mas1 = d.GetDateTime();
+    REQUIRE(!memcmp(mas, mas1, 19));
+}
+
+TEST_CASE("checking operator writeBinary and readBinary") {
+    DateTime d(1,12,2022,12,12,12);
+    DateTime d1;
+    ofstream to_binary("binary.dat");
+    writeBinary(to_binary, d);
+    to_binary.close();
+    ifstream from_binary("binary.dat");
+    readBinary(from_binary, d1);
+    REQUIRE(!memcmp(d.GetDateTime(), d1.GetDateTime(), 19));
+}

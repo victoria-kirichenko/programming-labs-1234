@@ -1,6 +1,6 @@
 #include "labs123.hpp"
 
-ofstream& operator<< (ofstream& os, DateTime& date) { // в файл
+ofstream& operator<< (ofstream& os, DateTime& date) {
     try {
         if (date.day < 1 || date.month < 1 || date.year < 1 || date.hours < 0 || date.minutes < 0 || date.seconds < 0) {
             throw MyException("Date and time format is uncorrect");
@@ -14,56 +14,50 @@ ofstream& operator<< (ofstream& os, DateTime& date) { // в файл
     return os;
 }
 
-ifstream& operator>> (ifstream& is, DateTime& date) { // из файла
-    int Day, Month, Year, Hours, Minutes, Seconds;
+ifstream& operator>> (ifstream& is, DateTime& date) {
     char Date[10];
     char Time[8];
     is >> Date;
     if (Date[0] == '0') {
-        Day = Date[1] - '0';
+        date.day = Date[1] - '0';
     } else {
-        Day = 10 * (Date[0] - '0') + (Date[1] - '0');
+        date.day = 10 * (Date[0] - '0') + (Date[1] - '0');
     }
     if (Date[3] == '0') {
-        Month = Date[4] - '0';
+        date.month = Date[4] - '0';
     } else {
-        Month = 10 * (Date[3] - '0') + (Date[3] - '0');
+        date.month = 10 * (Date[3] - '0') + (Date[3] - '0');
     }
     if (Date[6] == '0') {
         if (Date[7] == '0') {
             if (Date[8] == '0') {
-                Year = Date[9] - '0';
+                date.year = Date[9] - '0';
             } else {
-                Year = 10 * (Date[8] - '0') + (Date[9] - '0');
+                date.year = 10 * (Date[8] - '0') + (Date[9] - '0');
             }
         } else {
-            Year = 100 * (Date[7] - '0') + 10 * (Date[8] - '0') + (Date[9] - '0');
+            date.year = 100 * (Date[7] - '0') + 10 * (Date[8] - '0') + (Date[9] - '0');
         }
     } else {
-        Year = 1000 * (Date[6] - '0') + 100 * (Date[7] - '0') + 10 * (Date[8] - '0') + (Date[9] - '0');
+        date.year = 1000 * (Date[6] - '0') + 100 * (Date[7] - '0') + 10 * (Date[8] - '0') + (Date[9] - '0');
     }
     is >> Time;
     if (Time[0] == '0') {
-        Hours = Time[1] - '0';
+        date.hours = Time[1] - '0';
     } else {
-        Hours = 10 * (Time[0] - '0') + (Time[1] - '0');
+        date.hours = 10 * (Time[0] - '0') + (Time[1] - '0');
     }
     if (Time[3] == '0') {
-        Minutes = Time[4] - '0';
+        date.minutes = Time[4] - '0';
     } else {
-        Minutes = 10 * (Time[3] - '0') + (Time[4] - '0');
+        date.minutes = 10 * (Time[3] - '0') + (Time[4] - '0');
     }
     if (Time[6] == '0') {
-        Seconds = Time[7] - '0';
+        date.seconds = Time[7] - '0';
     } else {
-        Seconds = 10 * (Time[6] - '0') + (Time[7] - '0');
+        date.seconds = 10 * (Time[6] - '0') + (Time[7] - '0');
     }
-    date.SetDay(Day);
-    date.SetMonth(Month);
-    date.SetYear(Year);
-    date.SetHours(Hours);
-    date.SetMinutes(Minutes);
-    date.SetSeconds(Seconds);
+
     try {
         if (date.day < 1 || date.month < 1 || date.year < 1 || date.hours < 0 || date.minutes < 0 || date.seconds < 0) {
             throw MyException("Date and time format is uncorrect");
