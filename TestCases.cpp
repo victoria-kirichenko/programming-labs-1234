@@ -1,7 +1,6 @@
 #define CATCH_CONFIG_MAIN
-
 #include "labs123.cpp"
-#include "catch.hpp"  
+#include "catch.hpp"
 
 TEST_CASE("combo and weird date (+Seconds/+Day)") {
 	DateTime date(31, 12, 2021, 13, 40, 59);
@@ -207,8 +206,8 @@ TEST_CASE("subtragting weird dates") {
 
 TEST_CASE("checking operators << and >>") {
     DateTime d(1,12,2022,12,12,12);
-    ofstream out("text.txt");
-    ifstream in("text.txt");
+    ofstream out("../txt_and_dat_files/text.txt");
+    ifstream in("../txt_and_dat_files/text.txt");
     out << d;
     char mas[20];
     char* mas1;
@@ -224,10 +223,10 @@ TEST_CASE("checking operators << and >>") {
 TEST_CASE("checking operators writeBinary and readBinary") {
     DateTime d(1,12,2022,12,12,12);
     DateTime d1;
-    ofstream to_binary("binary.dat");
+    ofstream to_binary("../txt_and_dat_files/binary.dat");
     writeBinary(to_binary, d);
     to_binary.close();
-    ifstream from_binary("binary.dat");
+    ifstream from_binary("../txt_and_dat_files/binary.dat");
     readBinary(from_binary, d1);
     REQUIRE(!memcmp(d.GetDateTime(), d1.GetDateTime(), 19));
 }

@@ -1,4 +1,6 @@
+#include "class_Event.cpp"
 #include "labs123.cpp"
+#include "labs123.hpp"
 
 int main() {
  /*   DateTime d(34, 13, 2022, 78, 70, 60);
@@ -19,8 +21,8 @@ int main() {
 
     DateTime d(1,12,2022,12,12,12);
     DateTime d2;
-  /*  ofstream out("text.txt");
-    ifstream in("text.txt");
+    ofstream out("../txt_and_dat_files/text.txt");
+    ifstream in("../txt_and_dat_files/text.txt");
     out << d;
     char mas[20];
     char* mas1;
@@ -29,23 +31,25 @@ int main() {
     while (!in.eof()) {
         in.getline(mas, 20);
     }
-    mas1 = d.GetDateTime();
+   // in >> mas1;
     check = !memcmp(mas, mas1, 19);
     cout << check;
-    in.close(); */
+    in.close();
 
-  //  ifstream is("text1.txt");
+  //  ifstream is("../txt_and_dat_files/text1.txt");
   //  is >> d;
   //  cout << d.GetDateTime();
 
-  //ofstream binary("binary.dat");
+  //ofstream binary("../txt_and_dat_files/binary.dat");
   //writeBinary(binary, d);
  // binary.close();
 
-  vvod(d);
-
-//ifstream frombinary("binary.dat");
+//ifstream frombinary("../txt_and_dat_files/binary.dat");
 //readBinary(frombinary, d2);
 //cout << d2.GetDateTime();
 //frombinary.close();
+
+//Event Event("rave", "ebny room nsk", 25, 6, 2021, 22, 0, 0);
+//cout << Event.GetEvent();
+
 }

@@ -101,7 +101,7 @@ ifstream& readBinary (ifstream &is , DateTime& date) {
             is.read((char*)&date.hours, sizeof(int));
             is.read((char*)&date.minutes, sizeof(int));
             is.read((char*)&date.seconds, sizeof(int));
-            
+
             is.close();
         }
     }

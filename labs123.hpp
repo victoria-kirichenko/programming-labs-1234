@@ -9,7 +9,7 @@
 #include <sstream>
 using namespace std;
 
-class MyException : public exception{
+class MyException : public exception {
 	public :
 		MyException(const char *msg) : message(msg) {};
 		const char *what() {
@@ -39,7 +39,6 @@ public:
 	friend DateTime operator+ (const DateTime date, int hours);
 	friend DateTime operator- (const DateTime date, int hours);
 
-
 	void CheckingDay(int day);
 	void CheckingMonth(int month);
 	void CheckingYear(int year);
@@ -51,8 +50,6 @@ public:
     friend ifstream& operator>> (ifstream& is, DateTime& date);
 	friend ofstream& writeBinary (ofstream &os , DateTime& date);
 	friend ifstream& readBinary (ifstream &is , DateTime& date);
-
-	friend istream& vvod (DateTime& date);
 
 	bool CheckingDate();
 	int GetDay();
@@ -84,7 +81,7 @@ public:
 	void CreateString();
 	~DateTime();
 
-private:
+protected:
 	int day, month, year, hours, minutes, seconds;
 	char* date_time = new char[20];
 };

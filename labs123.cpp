@@ -1,7 +1,4 @@
 #include  "labs123.hpp"
-#include "exceptions.cpp"
-#include "methods_for_2_lab.cpp"
-#include "methods_for_3_lab.cpp"
 
 DateTime::DateTime() { // конструктор по умолчанию
     day = 1, month = 1, year = 1000, hours = 0, minutes = 0, seconds = 0;
