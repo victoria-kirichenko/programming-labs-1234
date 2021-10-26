@@ -21,8 +21,8 @@ void Event::SetCity(const char* valueCity) {
 }
 
 char* Event::GetEvent() {
-	char *tmp = new char[100];
-	strcat(tmp, GetName());
+	char* tmp = new char[100];
+	strcpy(tmp, GetName());
 	strcat(tmp, " ");
 	strcat(tmp, GetCity());
 	strcat(tmp, " ");

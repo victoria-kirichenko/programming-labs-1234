@@ -234,3 +234,44 @@ TEST_CASE("checking operators writeBinary and readBinary") {
     readBinary(from_binary, d1);
     REQUIRE(!memcmp(d.GetDateTime(), d1.GetDateTime(), 19));
 }
+
+TEST_CASE("class Event + construct with parametres") {
+    Event event("rave", "ebny room nsk", 25, 6, 2021, 22, 0, 0);
+    char* mas = { event.GetEvent() };
+    char mas1[50] = "rave ebny room nsk 25.06.2021 22:00:00";
+    REQUIRE(!memcmp(mas, mas1, 38));
+}
+
+TEST_CASE("class Event + construct with no parametres") {
+    Event event;
+    char* mas = { event.GetEvent() };
+    char mas1[50] = "Rave Moscow 01.01.1000 00:00:00";
+    REQUIRE(!memcmp(mas, mas1, 31));
+}
+
+TEST_CASE("SetName() + SetCity()") {
+    Event event;
+    event.SetName("Club");
+    event.SetCity("New York");
+    char* mas = { event.GetEvent() };
+    char mas1[50] = "Club New York 01.01.1000 00:00:00";
+    REQUIRE(!memcmp(mas, mas1, 33));
+}
+
+TEST_CASE("class TimeString + construct with parametres + operator adding") {
+    TimeString time("18:24:45", 26, 10, 2021);
+    time = time+10;
+    time.SetTimeIntAfterOperators(time.GetHours(), time.GetMinutes(), time.GetSeconds());
+    const char* mas = { time.GetTime() };
+    char mas1[10] = "04:24:45";
+    REQUIRE(!memcmp(mas, mas1, 8));
+}
+
+TEST_CASE("class TimeString + construct with parametres + operator substragting") {
+    TimeString time("00:00:00", 13, 10, 2021);
+    time = time-10;
+    time.SetTimeIntAfterOperators(time.GetHours(), time.GetMinutes(), time.GetSeconds());
+    const char* mas = { time.GetTime() };
+    char mas1[10] = "14:00:00";
+    REQUIRE(!memcmp(mas, mas1, 8));
+}

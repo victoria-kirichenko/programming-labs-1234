@@ -54,9 +54,9 @@ int main() {
 //Event Event("rave", "ebny room nsk", 25, 6, 2021, 22, 0, 0);
 //cout << Event.GetEvent();
 
-TimeString time("12:12:12", 26,10,2021);
-time = time-13;
+TimeString time("00:00:00", 13, 10, 2021);
+time = time-10;
 time.SetTimeIntAfterOperators(time.GetHours(), time.GetMinutes(), time.GetSeconds());
-cout << time.GetTime();
+cout << time.GetTime() << " " << time.GetDateTime();
 
 }
