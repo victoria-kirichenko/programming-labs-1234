@@ -1,6 +1,4 @@
-#include "class_Event.cpp"
 #include "labs123.cpp"
-#include "labs123.hpp"
 
 int main() {
  /*   DateTime d(34, 13, 2022, 78, 70, 60);
@@ -19,10 +17,10 @@ int main() {
     d2.CheckingSeconds(d2.GetSeconds());
     d2.CheckingYear(d2.GetYear()); */
 
-    DateTime d(1,12,2022,12,12,12);
+   /* DateTime d(1,12,2022,12,12,12);
     DateTime d2;
-    ofstream out("../txt_and_dat_files/text.txt");
-    ifstream in("../txt_and_dat_files/text.txt");
+    ofstream out("txt_and_dat_files/text.txt");
+    ifstream in("txt_and_dat_files/text.txt");
     out << d;
     char mas[20];
     char* mas1;
@@ -34,17 +32,17 @@ int main() {
    // in >> mas1;
     check = !memcmp(mas, mas1, 19);
     cout << check;
-    in.close();
+    in.close(); */
 
   //  ifstream is("../txt_and_dat_files/text1.txt");
   //  is >> d;
   //  cout << d.GetDateTime();
 
-  //ofstream binary("../txt_and_dat_files/binary.dat");
-  //writeBinary(binary, d);
+//  ofstream binary("txt_and_dat_files/binary.dat");
+ // writeBinary(binary, d);
  // binary.close();
 
-//ifstream frombinary("../txt_and_dat_files/binary.dat");
+//ifstream frombinary("txt_and_dat_files/binary.dat");
 //readBinary(frombinary, d2);
 //cout << d2.GetDateTime();
 //frombinary.close();
