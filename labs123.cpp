@@ -13,6 +13,12 @@ DateTime::DateTime(int day_1, int month_1, int year_1, int hours_1, int minutes_
 	seconds = seconds_1;
 }
 
+DateTime::DateTime(int day_1, int month_1, int year_1) {
+	day = day_1;
+	month = month_1;
+	year = year_1;
+}
+
 DateTime::~DateTime() { // деструктор
 	delete[] date_time;
 }

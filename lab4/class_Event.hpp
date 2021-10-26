@@ -1,6 +1,6 @@
 #ifndef CLASS_EVENT_HPP_INCLUDED
 #define CLASS_EVENT_HPP_INCLUDED
-#include "labs123.hpp"
+#include "../labs123.hpp"
 
 class Event : public DateTime {
 public:

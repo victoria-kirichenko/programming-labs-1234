@@ -26,6 +26,8 @@ public:
 
 	DateTime(int day_1, int month_1, int year_1, int hours_1, int minutes_1, int seconds_1);
 
+	DateTime(int day_1, int month_1, int year_1);
+
 	DateTime(const DateTime& date) : // конструктор копирования
 		day(date.day), month(date.month), year(date.year), hours(date.hours), minutes(date.minutes), seconds(date.seconds) {
 		date_time = new char[20];

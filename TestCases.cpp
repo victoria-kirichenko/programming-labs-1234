@@ -2,6 +2,8 @@
 #include "labs123.cpp"
 #include "methods_for_2_lab.cpp"
 #include "methods_for_3_lab.cpp"
+#include "lab4/class_Event.cpp"
+#include "lab4/class_TimeString.cpp"
 #include "catch.hpp"
 
 TEST_CASE("combo and weird date (+Seconds/+Day)") {

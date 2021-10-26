@@ -1,4 +1,8 @@
 #include "labs123.cpp"
+#include "methods_for_2_lab.cpp"
+#include "methods_for_3_lab.cpp"
+#include "lab4/class_Event.cpp"
+#include "lab4/class_TimeString.cpp"
 
 int main() {
  /*   DateTime d(34, 13, 2022, 78, 70, 60);
@@ -49,5 +53,10 @@ int main() {
 
 //Event Event("rave", "ebny room nsk", 25, 6, 2021, 22, 0, 0);
 //cout << Event.GetEvent();
+
+TimeString time("12:12:12", 26,10,2021);
+time = time-13;
+time.SetTimeIntAfterOperators(time.GetHours(), time.GetMinutes(), time.GetSeconds());
+cout << time.GetTime();
 
 }
