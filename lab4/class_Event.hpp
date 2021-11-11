@@ -5,13 +5,11 @@
 class Event : public DateTime {
 public:
 
-	Event() : name(new char[30]), city(new char[30]), DateTime() {
-		name = "Rave", city = "Moscow";
+	Event() : name("Rave"), city("Moscow"), DateTime() {
 	}
 
     Event(const char* namE, const char* citY, int day, int month, int year, int hours, int minutes, int seconds)
-        : name(new char[strlen(namE) + 1]), city(new char[strlen(citY) + 1]), DateTime(day, month, year, hours, minutes, seconds) {
-			name = namE, city = citY;
+        : name(namE), city(citY), DateTime(day, month, year, hours, minutes, seconds) {
 		}
 
 	void SetName(const char* valueName);
@@ -19,6 +17,10 @@ public:
 	void SetCity(const char* valueCity);
 	const char* GetCity();
 	char* GetEvent();
+
+	virtual int SizeOfDate();
+	virtual char *GetStr();
+
 	~Event() { delete[] name, city; }
 
 private:

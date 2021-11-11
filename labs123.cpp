@@ -87,7 +87,7 @@ void DateTime::SetSeconds(int valueSeconds) {
 char* DateTime::GetDateTime() {
 	CreateString();
 	char *tmp = new char[20];
-	tmp = date_time;
+	strcpy(tmp, date_time);
 	return tmp;
 }
 
@@ -240,4 +240,16 @@ void DateTime::MinusYear() {
 
 void DateTime::CreateString() {
 	sprintf(date_time, "%02d.%02d.%04d %02d:%02d:%02d", day, month, year, hours, minutes, seconds);
+}
+
+int DateTime::SizeOfDate() {
+    int size = strlen(this->GetStr());
+    return size;
+}
+
+char* DateTime::GetStr() {
+	CreateString();
+	char *tmp = new char[20];
+	strcpy(tmp, date_time);
+	return tmp;
 }

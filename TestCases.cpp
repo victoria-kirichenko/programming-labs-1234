@@ -4,6 +4,7 @@
 #include "methods_for_3_lab.cpp"
 #include "lab4/class_Event.cpp"
 #include "lab4/class_TimeString.cpp"
+#include "lab5/stack.cpp"
 #include "catch.hpp"
 
 TEST_CASE("combo and weird date (+Seconds/+Day)") {
@@ -274,4 +275,45 @@ TEST_CASE("class TimeString + construct with parametres + operator substragting"
     const char* mas = { time.GetTime() };
     char mas1[10] = "14:00:00";
     REQUIRE(!memcmp(mas, mas1, 8));
+}
+
+TEST_CASE("Push 3 elem in diff classes") {
+    DateTime date(12, 12, 2021, 10, 11, 12);
+    TimeString time("10:10:10", 3, 11, 2021);
+    Event event("Angina", "NSK", 6, 11, 2021, 9, 0, 0);
+    List list;
+    list.Push(date);
+    list.Push(time);
+    list.Push(event);
+    char *mas = { list.Show() };
+    int s = event.SizeOfDate();
+    char *mas1 = new char[s];
+    strcpy(mas1, event.GetEvent());
+    strcat(mas1, "\n");
+    strcat(mas1, time.GetDateTime());
+    strcat(mas1, "\n");
+    strcat(mas1, date.GetDateTime());
+    strcat(mas1, "\n");
+    REQUIRE(!memcmp(mas, mas1, strlen(mas1)));
+}
+
+TEST_CASE("Push, Pop ans search") {
+    DateTime date(12, 12, 2021, 10, 11, 12);
+    TimeString time("10:10:10", 3, 11, 2021);
+    Event event("Angina", "NSK", 6, 11, 2021, 9, 0, 0);
+    List list;
+    list.Push(date);
+    list.Push(time);
+    list.Push(event);
+    list.Pop();
+    int idx = list.Search(time);
+    REQUIRE(idx == 0);
+    char *mas = { list.Show() };
+    int s = event.SizeOfDate();
+    char *mas1 = new char[s];
+    strcpy(mas1, time.GetDateTime());
+    strcat(mas1, "\n");
+    strcat(mas1, date.GetDateTime());
+    strcat(mas1, "\n");
+    REQUIRE(!memcmp(mas, mas1, strlen(mas1)));
 }

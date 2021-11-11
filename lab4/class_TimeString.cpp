@@ -87,3 +87,14 @@ TimeString operator- (const TimeString time, int value) {
     }
     return temp;
 }
+
+int TimeString::SizeOfDate() {
+    int size = strlen(this->GetStr());
+    return size;
+}
+
+char* TimeString::GetStr() {
+	char* tmp = new char[20];
+	strcpy(tmp, DateTime::GetDateTime());
+	return tmp;
+}

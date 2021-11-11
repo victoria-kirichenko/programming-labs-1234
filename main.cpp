@@ -3,24 +3,9 @@
 #include "methods_for_3_lab.cpp"
 #include "lab4/class_Event.cpp"
 #include "lab4/class_TimeString.cpp"
+#include "lab5/stack.cpp"
 
 int main() {
- /*   DateTime d(34, 13, 2022, 78, 70, 60);
-    d.CheckingDay(d.GetDay());
-    d.CheckingMonth(d.GetMonth());
-    d.CheckingHours(d.GetHours());
-    d.CheckingMinutes(d.GetMinutes());
-    d.CheckingSeconds(d.GetSeconds());
-	DateTime d1(29, 2, 2021, 13, 14, 15);
-	d1.CheckingYear(d1.GetYear());
-    DateTime d2(0, 0, -1, -1, -1, -1);
-    d2.CheckingDay(d2.GetDay());
-    d2.CheckingMonth(d2.GetMonth());
-    d2.CheckingHours(d2.GetHours());
-    d2.CheckingMinutes(d2.GetMinutes());
-    d2.CheckingSeconds(d2.GetSeconds());
-    d2.CheckingYear(d2.GetYear()); */
-
    /* DateTime d(1,12,2022,12,12,12);
     DateTime d2;
     ofstream out("txt_and_dat_files/text.txt");
@@ -54,9 +39,28 @@ int main() {
 //Event Event("rave", "ebny room nsk", 25, 6, 2021, 22, 0, 0);
 //cout << Event.GetEvent();
 
-TimeString time("00:00:00", 13, 10, 2021);
-time = time-10;
-time.SetTimeIntAfterOperators(time.GetHours(), time.GetMinutes(), time.GetSeconds());
-cout << time.GetTime() << " " << time.GetDateTime();
+// TimeString time("00:00:00", 13, 10, 2021);
+// time = time-10;
+// time.SetTimeIntAfterOperators(time.GetHours(), time.GetMinutes(), time.GetSeconds());
+// cout << time.GetTime() << " " << time.GetDateTime();
 
+  DateTime date(12, 12, 2021, 10, 11, 12);
+    TimeString time("10:10:10", 3, 11, 2021);
+    Event event("Angina", "NSK", 6, 11, 2021, 9, 0, 0);
+    List list;
+    list.Push(date);
+    list.Push(time);
+    list.Push(event);
+   // cout << list.Show();
+    char *mas = { list.Show() };
+    int s = event.SizeOfDate();
+    char *mas1 = new char[s];
+    strcpy(mas1, event.GetEvent());
+    strcat(mas1, "\n");
+    strcat(mas1, time.GetDateTime());
+    strcat(mas1, "\n");
+    strcat(mas1, date.GetDateTime());
+    strcat(mas1, "\n");
+    cout << mas;
+    cout << mas1;
 }

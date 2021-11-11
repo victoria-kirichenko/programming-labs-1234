@@ -29,3 +29,18 @@ char* Event::GetEvent() {
 	strcat(tmp, DateTime::GetDateTime());
 	return tmp;
 }
+
+int Event::SizeOfDate() {
+    int size = strlen(this->GetStr());
+    return size;
+}
+
+char* Event::GetStr() {
+	char* tmp = new char[100];
+	strcpy(tmp, GetName());
+	strcat(tmp, " ");
+	strcat(tmp, GetCity());
+	strcat(tmp, " ");
+	strcat(tmp, DateTime::GetDateTime());
+	return tmp;
+}
