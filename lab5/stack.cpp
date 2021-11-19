@@ -1,6 +1,6 @@
 #include "stack.hpp"
 
-void List::Push(DateTime date) { // добавление в начало списка
+void List::Push(DateTime date) {
     Node *n = new Node(date);
     n->next = head;
     head = n;
@@ -21,11 +21,17 @@ void List::Push(Event date) {
     size++;
 }
 
-void List::Pop() {
+DateTime* List::Pop() {
+    if (size == 0) {
+        return nullptr;
+    }
     Node *temp = head;
     head = head->next;
+    DateTime *x = temp->data;
+    DateTime *y = new DateTime(*x);
     delete temp;
     size--;
+    return y;
 }
 
 char *List::Show() {

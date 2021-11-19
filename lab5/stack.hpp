@@ -13,14 +13,18 @@ public:
     void Push(DateTime date);
     void Push(TimeString date);
     void Push(Event date);
-    void Pop();
+    DateTime* Pop();
     int Search(DateTime date);
     int Search(TimeString date);
     int Search(Event date);
     char* Show();
     int GetSize() { return size; }
 
-    ~List() {}
+    ~List() {
+        while (size) {
+            Pop();
+        }
+    }
 
 private:
 
@@ -46,6 +50,9 @@ private:
         Node(Event date) {
             this->data = new Event(date);
             this->next = nullptr;
+        }
+        ~Node() {
+            delete this->data;
         }
     };
     int size;

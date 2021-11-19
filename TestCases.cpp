@@ -5,6 +5,7 @@
 #include "lab4/class_Event.cpp"
 #include "lab4/class_TimeString.cpp"
 #include "lab5/stack.cpp"
+#include "lab7/template.cpp"
 #include "catch.hpp"
 
 TEST_CASE("combo and weird date (+Seconds/+Day)") {
@@ -314,6 +315,72 @@ TEST_CASE("Push, Pop ans search") {
     strcpy(mas1, time.GetDateTime());
     strcat(mas1, "\n");
     strcat(mas1, date.GetDateTime());
+    strcat(mas1, "\n");
+    REQUIRE(!memcmp(mas, mas1, strlen(mas1)));
+}
+
+TEST_CASE("Template DateTime") {
+    DateTime date(12, 12, 2021, 10, 11, 12);
+    DateTime date1;
+    DateTime date2(13, 3, 2020, 1, 1, 1);
+    ListT<DateTime> list;
+    list.Push(date);
+    list.Push(date1);
+    list.Push(date2);
+    char *mas = { list.Show() };
+    int s = date2.SizeOfDate();
+    char *mas1 = new char[s];
+    strcpy(mas1, date2.GetDateTime());
+    strcat(mas1, "\n");
+    strcat(mas1, date1.GetDateTime());
+    strcat(mas1, "\n");
+    strcat(mas1, date.GetDateTime());
+    strcat(mas1, "\n");
+    REQUIRE(!memcmp(mas, mas1, strlen(mas1)));
+}
+
+TEST_CASE("Template TimeString") {
+    TimeString date("10:11:12", 12, 12, 2021, 10, 11, 12);
+    TimeString date1;
+    ListT<TimeString> list;
+    list.Push(date);
+    list.Push(date1);
+    char *mas = { list.Show() };
+    int s = date1.SizeOfDate();
+    char *mas1 = new char[s];
+    strcpy(mas1, date1.GetDateTime());
+    strcat(mas1, "\n");
+    strcat(mas1, date.GetDateTime());
+    strcat(mas1, "\n");
+    REQUIRE(!memcmp(mas, mas1, strlen(mas1)));
+}
+
+TEST_CASE("Template Event") {
+    Event date("zhhhh", "RRR", 12, 12, 2021, 10, 11, 12);
+    Event date1;
+    ListT<Event> list;
+    list.Push(date);
+    list.Push(date1);
+    list.Pop();
+    char *mas = { list.Show() };
+    int s = date.SizeOfDate();
+    char *mas1 = new char[s];
+    strcpy(mas1, date.GetEvent());
+    strcat(mas1, "\n");
+    REQUIRE(!memcmp(mas, mas1, strlen(mas1)));
+}
+
+TEST_CASE("Template int") {
+    int x = 3;
+    int y = 456;
+    ListT<int> list;
+    list.Push(x);
+    list.Push(y);
+    char *mas = { list.Show() };
+    char *mas1 = new char[3];
+    sprintf(mas1, "");
+    strcat(mas1, "456\n");
+    strcat(mas1, "3");
     strcat(mas1, "\n");
     REQUIRE(!memcmp(mas, mas1, strlen(mas1)));
 }
