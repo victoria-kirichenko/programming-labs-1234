@@ -6,13 +6,6 @@
 #include <ctime>
 #include <algorithm>
 
-template<typename K, typename V>
-void print_map(std::map<K, V> const &m) {
-    for (auto const &pair: m) {
-        std::cout << "{" << pair.first << ": " << pair.second << "}\n";
-    }
-}
-
 void VectorTest() {
     typedef std::map<int, DateTime> Memories;
     Memories today;
@@ -40,13 +33,19 @@ void VectorTest() {
     before = clock();
     auto search = today.find(134);
     if (search != today.end()) {
-        std::cout << "Found " << '\n';
-        print_map(today);
+        std::cout << "Found, ";
+        map <int, DateTime> :: iterator it = today.begin();
+        for (int i = 0; it != today.end(); it++, i++) {
+            if (i == 134) {
+                char* mas = it->second.GetDateTime();
+                printf("%s\n", mas);
+            }
+        }
     } else {
         std::cout << "Not found\n";
     }
     cout << "Время: " << clock() - before << " мс" << endl;
-    cout << "Удаление 250 последовательных элементов из контейнера:" << endl;
+    cout << "Удаление 300 последовательных элементов из контейнера:" << endl;
     before = clock();
     for (auto it = today.begin(); it != today.end();) {
         it = today.erase(it);
