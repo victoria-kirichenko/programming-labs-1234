@@ -1,3 +1,8 @@
 #include "../labs123.cpp"
-
-void VectorTest();
+#include <vector>
+#include <algorithm>
+#include <iterator>
+#include <map>
+#include <ctime>
+#include <algorithm>
+#include <iostream>
