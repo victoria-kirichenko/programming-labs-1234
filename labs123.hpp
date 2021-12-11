@@ -40,6 +40,7 @@ public:
 	operator char*();
 	friend DateTime operator+ (const DateTime date, int hours);
 	friend DateTime operator- (const DateTime date, int hours);
+	friend bool operator< (const DateTime date, const DateTime date1);
 
 	void CheckingDay(int day);
 	void CheckingMonth(int month);

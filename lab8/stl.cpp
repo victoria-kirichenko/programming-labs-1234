@@ -11,6 +11,18 @@ void VectorTest() {
     cout << "Количество элементов после вставки: " << cont.size() << endl;
     cout << "Время: " << clock() - before << "мс" << endl;
     
+    cout << "Добавление элемента в любое место" << endl;
+    before = clock();
+    auto it = cont.insert(cont.begin() + 1, 3);
+    cout << "Элементы после вставки: " << endl;
+    for (auto it = cont.begin(); it != cont.end(); ++it) {
+        cout << *it << " ";
+        if (*it == 4) {
+            break;
+        }
+    }
+    cout << endl << "Время: " << clock() - before << "мс" << endl;
+
     cout << "Сортировка вектора" << endl;
     before = clock();
     sort(cont.begin(),cont.end());
@@ -47,10 +59,11 @@ void VectorClassTest() {
 }
 
 void MapTest() {
-    cout << "MAP TEST INT + DATETIME" << endl;
-    typedef std::map<int, DateTime> Memories;
-    Memories today;
-    int num = 1;
+    cout << "MAP TEST DATETIME + DATETIME" << endl;
+    map<DateTime, DateTime> Memories;
+    vector<DateTime> vec;
+    DateTime key(1, 1, 2021, 0, 0, 0);
+    DateTime key1(1, 1, 2021, 0, 0, 0);
     DateTime date(26, 11, 2021, 9, 24, 0);
     DateTime date1(1, 1, 2022, 11, 11, 11);
     DateTime date2(12, 12, 2021, 12, 12, 12);
@@ -58,42 +71,60 @@ void MapTest() {
     int before = clock();
     for (int i = 0; i < 300; i++) {
         if (i < 100) {
-            today.insert(Memories::value_type(num, date));
-            num++;
+            Memories.insert(make_pair(key, date));
+            key = key + 1;
         } else if (i >= 100 && i < 200) {
-            today.insert(Memories::value_type(num, date1));
-            num++;
+            Memories.insert(make_pair(key, date1));
+            key = key + 1;
         } else {
-            today.insert(Memories::value_type(num, date2));
-            num++;
+            Memories.insert(make_pair(key, date2));
+            key = key + 1;
         }
     }
-    cout << "Количество элементов после вставки: " << today.size() << endl;
+    for (int i = 0; i < 300; i++) {
+        if (i < 100) {
+            vec.push_back(key1);
+            key1 = key1 + 1;
+        } else if (i >= 100 && i < 200) {
+            vec.push_back(key1);
+            key1 = key1 + 1;
+        } else {
+            vec.push_back(key1);
+            key1 = key1 + 1;
+        }
+    }
+    cout << "Количество элементов после вставки: " << Memories.size() << endl;
     cout << "Время: " << clock() - before << " мс" << endl;
     cout << "Поиск даты: ";
     before = clock();
-    int number = 134;
-    auto search = today.find(number);
-    if (search != today.end()) {
-        std::cout << "Found, ";
-        map <int, DateTime> :: iterator it = today.begin();
-        for (int i = 0; it != today.end(); it++, i++) {
-            if (i == number) {
-                char* mas = it->second.GetDateTime();
-                printf("%s\n", mas);
-            }
+    bool check = 1;
+    DateTime number(1, 1, 2021, 12, 0, 0);
+    vector<DateTime>::iterator iter = vec.begin();
+    DateTime num(1, 1, 2021, 12, 0, 0);
+    char *data = num;
+    for (; iter != vec.end(); iter++) {
+        char *r = *iter;
+        if (!memcmp(r,data,19)) {
+            check = 0;
+            break;
+        } else {
+            r = new char[19];
+            check = 1;
         }
+    }
+    if (check == 0) {
+        cout << "Found: " << number.GetDateTime() << endl;
     } else {
-        std::cout << "Not found\n";
+        cout << "Not Found" << endl;
     }
     cout << "Время: " << clock() - before << " мс" << endl;
     cout << "Удаление 300 последовательных элементов из контейнера:" << endl;
     before = clock();
-    for (auto it = today.begin(); it != today.end();) {
-        it = today.erase(it);
+    for (auto it = Memories.begin(); it != Memories.end();) {
+        it = Memories.erase(it);
     }
     cout << "Время: " << clock() - before << " мс" <<  endl;
-    cout << "Количество элементов после удаления: " << today.size() << endl << endl;
+    cout << "Количество элементов после удаления: " << Memories.size() << endl << endl;
 }
 
 int main() {

@@ -198,3 +198,44 @@ DateTime operator- (const DateTime date, int hours) { // дружественн�
 	}
 	return temp;
 }
+
+bool operator< (DateTime date, DateTime date1) {
+	if (date.GetYear() > date1.GetYear()) {
+		return false;
+	} else if (date.GetYear() < date1.GetYear()) {
+		return true;
+	} else if (date.GetYear() == date1.GetYear()) {
+		if (date.GetMonth() > date1.GetMonth()) {
+			return false;
+		} else if (date.GetMonth() < date1.GetMonth()) {
+			return true;
+		} else if (date.GetMonth() == date1.GetMonth()) {
+			if (date.GetDay() > date1.GetDay()) {
+				return false;
+			} else if (date.GetDay() < date1.GetDay()) {
+				return true;
+			} else if (date.GetDay() == date1.GetDay()) {
+				if (date.GetHours() > date1.GetHours()) {
+					return false;
+				} else if (date.GetHours() < date1.GetHours()) {
+					return true;
+				} else if (date.GetHours() == date1.GetHours()) {
+					if (date.GetMinutes() > date1.GetMinutes()) {
+						return false;
+					} else if (date.GetMinutes() < date1.GetMinutes()) {
+						return true;
+					} else if (date.GetMinutes() == date1.GetMinutes()) {
+						if (date.GetSeconds() > date1.GetSeconds()) {
+							return false;
+						} else if (date.GetSeconds() < date1.GetSeconds()) {
+							return true;
+						} else {
+							return true;
+						}
+					}
+				}
+			}
+		}
+	}
+	return true;
+}

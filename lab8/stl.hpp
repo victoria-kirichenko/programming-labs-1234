@@ -1,4 +1,5 @@
 #include "../labs123.cpp"
+#include "../methods_for_2_lab.cpp"
 #include <vector>
 #include <algorithm>
 #include <iterator>
